@@ -1,0 +1,24 @@
+[project]
+name = "aes-encryption-api"
+version = "0.1.0"
+description = "A FastAPI service that provides AES encryption functionality"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi==0.109.2",
+    "uvicorn==0.27.1",
+    "python-dotenv==1.0.1",
+    "pydantic==2.6.1",
+    "cryptography==42.0.2",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["*"]
+exclude = ["tests*"]
+
+[tool.uv]
+python-version = "3.11" 
