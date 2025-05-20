@@ -16,6 +16,10 @@ class EncryptRequest(BaseModel):
     text: str
 
 
+class ReverseRequest(BaseModel):
+    text: str
+
+
 def get_encryption_key():
     key = os.getenv("AES_KEY")
     if not key:
@@ -55,6 +59,15 @@ async def encrypt_text(request: EncryptRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.post("/reverse")
+async def reverse_text(request: ReverseRequest):
+    try:
+        reversed_text = request.text[::-1]
+        return {"reversed_text": reversed_text}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=11000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
